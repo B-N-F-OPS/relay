@@ -11,7 +11,7 @@ export default function DashboardPage() {
 
 
     return (
-        <main  className="w-[80vw] h-[90vh] bg-[#212332] m-auto flex flex-row font-sans overflow-y-auto scrollbar-none">
+        <main  className="w-[83vw] h-[96vh] bg-[#212332] m-auto flex flex-row font-sans overflow-y-auto scrollbar-none">
 
             <nav className="text-white text-2xl bg-[#2A2D3E] w-[17%] overflow-y-auto scrollbar-none">
 
@@ -44,7 +44,7 @@ export default function DashboardPage() {
                 </section>
             </nav>
 
-            <div className="w-full h-fit">
+            <div className="w-full h-fit overflow-y-auto">
                 {/* rendered modules appear here */}
                 <StoragePage />
             </div>
