@@ -3,24 +3,34 @@ import dropDown from "@/public/down-arrow.png"
 
 export default function FilesList() {
     return(
-        <main className="bg-[#2A2D3E] overflow-y-auto pl-8 pr-4">
+        <main className="bg-[#2A2D3E] overflow-y-auto pl-8 pr-4 rounded-xl">
 
             <div className="flex flex-row gap-54 items-center">
-                <p>Recent files</p>
-                <button className="p-3">See more</button>
+                <p className="mt-7 mb-5 text-xl">Recent files</p>
+                <button className="p-3 mb-6 outline-1 outline-white/10 mt-6 rounded-xl">See more</button>
             </div>
 
-            <p>File Name</p>
-            <Image src={dropDown} alt="Drop down icon"
-                className="w-2 h-2"/>
+            <nav className="flex flex-row gap-31 border-b border-gray-700 border-opacity-1 mb-4">
 
-            <p>Date</p>
-            <Image src={dropDown} alt="Drop down icon"
-                className="w-2 h-2"/>
+                <div className="sharedNavs">
+                    <p>File Name</p>
+                    <Image src={dropDown} alt="Dropdown icon"
+                        className="w-2 h-2"/>
+                </div>
 
-            <p>size</p>
-            <Image src={dropDown} alt="Drop down icon"
-                className="w-2 h-2"/>
+                <div className="sharedNavs">
+                    <p>Date</p>
+                    <Image src={dropDown} alt="Drop down icon"
+                        className="w-2 h-2"/>
+                </div>
+
+                <div className="sharedNavs">
+                    <p>size</p>
+                    <Image src={dropDown} alt="Drop down icon"
+                        className="w-2 h-2"/>
+                </div>
+            </nav>
+
 
         </main>
     )
