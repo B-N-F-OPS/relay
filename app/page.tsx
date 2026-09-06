@@ -3,5 +3,9 @@ import DashboardPage from './Dashboard/page'
 import LoginPage from "./auth/login/page"
 
 export default function Home() {
-  return < LoginPage />
+  return (
+    < LoginPage />
+    // < DashboardPage />
+
+  )
 }

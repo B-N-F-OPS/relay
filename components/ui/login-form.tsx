@@ -1,3 +1,5 @@
+'use client'
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -11,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input"
 import loginImg from "@/public/loginImg.png"
 import Image from 'next/image'
-import { createClient, type Provider } from '@supabase/supabase-js'
+import { createClient } from '@supabase/supabase-js'
 
 export function LoginForm({
   className,
@@ -21,14 +23,13 @@ export function LoginForm({
   function handleGoolgeSignIn() {
     const supabase_url: any = process.env.NEXT_PUBLIC_SUPABASE_URL
     const supabase_key: any = process.env.NEXT_PUBLIC_PUBLISHABLE_KEY
-    const provider = 'provider' as Provider
 
     const supabase = createClient(supabase_url, supabase_key)
       supabase.auth.signInWithOAuth({
-      provider,
-      options: {
-        redirectTo: `http://localhost:3000/auth/callback`,
-      },
+        provider: 'google',
+        options: {
+          redirectTo: 'http://localhost:3000/Dashboard',
+        },
     })
   
   }

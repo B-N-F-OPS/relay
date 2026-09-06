@@ -61,7 +61,7 @@ export default function Cards() {
 
         cardsTemplateArr.map((item, index)=> {
             return(
-                <div className="text-sm cursor-pointer text-center bg-[#2A2D3E] w-fit h-fit p-4 rounded-xl id" key={index}>
+                <div className="text-sm text-[#B5C9DB] cursor-pointer text-center bg-[#2A2D3E] w-fit h-fit p-4 rounded-xl id" key={index}>
                     <Image className={`w-10 h-10 p-2 ${item.iconBackground} rounded-xl mb-6`}
                         src={item.srcIcon}
                         alt={`${item.altProperty}`} />
