@@ -3,11 +3,13 @@ import googleDriveIcon from '@/public/google_drive.png'
 import documentsIcon from '@/public/documents.png'
 import dropboxIcon from '@/public/dropbox.png'
 import onedriveIcon from '@/public/onedrive.png'
+import { listFiles } from '@/app/api/googleDrive/route'
 
 export default function Cards() {
 
     const cardsTemplateArr = [
          {
+            "id": "documents",
             "iconBackground": "bg-[#2697FF]/10",
             "srcIcon": documentsIcon,
             "altProperty": "Documents icon",
@@ -20,6 +22,7 @@ export default function Cards() {
             "remainingStorage": 1.3
         },
         {
+            "id": "google_Drive",
             "iconBackground": "bg-[#FFA113]/10",
             "srcIcon": googleDriveIcon,
             "altProperty": "Google drive icon",
@@ -32,6 +35,7 @@ export default function Cards() {
             "remainingStorage": 2.9
         },
         {
+            "id": "onedrive",
             "iconBackground": "bg-[#2697FF]/10",
             "srcIcon": onedriveIcon,
             "altProperty": "Onedrive icon",
@@ -44,6 +48,7 @@ export default function Cards() {
             "remainingStorage": 1.7
         },
         {
+            "id": "dropbox",
             "iconBackground": "bg-[#2697FF]/10",
             "srcIcon": dropboxIcon,
             "altProperty": "Dropbox icon",
@@ -57,11 +62,20 @@ export default function Cards() {
         }
     ]
 
+    function handleClick (e) {
+        const target = e.currentTarget.id
+
+        if(target === 'google_Drive') {
+            
+        }
+    }
+
     return(
 
         cardsTemplateArr.map((item, index)=> {
             return(
-                <div className="text-sm text-[#B5C9DB] cursor-pointer text-center bg-[#2A2D3E] w-fit h-fit p-4 rounded-xl id" key={index}>
+                <div id={item.id} onClick={handleClick} key={index}
+                className="text-sm text-[#B5C9DB] cursor-pointer text-center bg-[#2A2D3E] w-fit h-fit p-4 rounded-xl">
                     <Image className={`w-10 h-10 p-2 ${item.iconBackground} rounded-xl mb-6`}
                         src={item.srcIcon}
                         alt={`${item.altProperty}`} />

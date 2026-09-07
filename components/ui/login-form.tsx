@@ -15,10 +15,7 @@ import loginImg from "@/public/loginImg.png"
 import Image from 'next/image'
 import { createClient } from '@supabase/supabase-js'
 
-export function LoginForm({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+export function LoginForm({className, ...props}: React.ComponentProps<"div">) {
 
   function handleGoolgeSignIn() {
     const supabase_url: any = process.env.NEXT_PUBLIC_SUPABASE_URL
