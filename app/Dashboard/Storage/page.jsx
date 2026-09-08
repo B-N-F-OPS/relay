@@ -38,8 +38,8 @@ export default function StoragePage() {
             </div>
 
             <div className="flex flex-row gap-11 pl-6 w-[69%] h-full pb-6">
-                <FilesList />
-                <Analytics />
+               <FilesList fallback='Loading files...'/>
+               <Analytics fallback='Loading charts...'/>
             </div>
 
         </>

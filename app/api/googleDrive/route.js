@@ -1,17 +1,25 @@
-import { listFiles } from '@/lib/g_drive'
-import { NextResponse } from 'next/server'
+import { listFiles } from '@/lib/g_drive';
 
 export async function GET() {
-  try {
-    const gDrive_Data = await listFiles();
-    return NextResponse.json(
-      {status: 200, Data: gDrive_Data}
-    )
+    try {
+        const files = await listFiles();
 
-  } catch(error) {
-    return NextResponse.json({
-      status: 500,
-      error: error.message
-    })
-  }
+        console.log('Google Drive files:', files);
+
+        return Response.json({
+            files
+        });
+
+    } catch (error) {
+        console.error('Google Drive error:', error);
+
+        return Response.json(
+            {
+                error: error.message
+            },
+            {
+                status: 500
+            }
+        );
+    }
 }

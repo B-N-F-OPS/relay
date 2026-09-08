@@ -1,7 +1,20 @@
+'use client'
+
 import Image from "next/image"
 import dropDown from "@/public/down-arrow.png"
+import { useEffect, useState } from "react"
 
 export default function FilesList() {
+
+    const [gDriveData, setGDriveData] = useState()
+
+    useEffect(() => {
+    fetch('/api/googleDrive')
+        .then(res => res.json())
+        .then(data => {
+            setGDriveData(data);
+        });
+    }, []);
     return(
         <main className="bg-[#2A2D3E] overflow-y-auto pl-8 pr-4 rounded-xl">
 
@@ -31,6 +44,9 @@ export default function FilesList() {
                 </div>
             </nav>
 
+            <div>
+                {gDriveData}
+            </div>
 
         </main>
     )
