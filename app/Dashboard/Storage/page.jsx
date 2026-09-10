@@ -4,6 +4,7 @@ import profile from '@/public/profile.png'
 import Cards from './componenets/cards'
 import FilesList from "./componenets/filesList"
 import Analytics from "./componenets/analytics"
+import { Suspense } from 'react'
 
 export default function StoragePage() {
     return(
@@ -38,8 +39,10 @@ export default function StoragePage() {
             </div>
 
             <div className="flex flex-row gap-11 pl-6 w-[69%] h-full pb-6">
-               <FilesList fallback='Loading files...'/>
-               <Analytics fallback='Loading charts...'/>
+                <Suspense fallback={<p>Loading files...</p>}>
+                    <FilesList />
+                    {/* <Analytics /> */}
+                </Suspense>
             </div>
 
         </>
