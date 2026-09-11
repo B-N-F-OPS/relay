@@ -2,29 +2,8 @@
 
 import Image from "next/image"
 import dropDown from "@/public/down-arrow.png"
-import { useEffect, useState } from "react"
-import { listDriveFiles } from "@/app/api/googleDrive/route"
 
 export default function FilesList() {
-
-    const [gDriveData, setGDriveData] = useState()
-
-    useEffect(()=>{
-        async function files() {
-            const filesfromDrive = await listDriveFiles();
-            console.log(filesfromDrive)
-            const mapped = filesfromDrive.map((items)=> {
-                return (
-                    <main key={items.id}>
-                        <p>{items.name}</p>
-                        <p>{items.mimeType}</p>
-                    </main>
-                )
-            })
-            setGDriveData(mapped)
-        }
-        files();
-    }, [])
 
     return(
         <main className="bg-[#2A2D3E] overflow-y-auto pl-8 pr-4 rounded-xl">
@@ -56,7 +35,7 @@ export default function FilesList() {
             </nav>
 
             <div>
-                {gDriveData}
+            
             </div>
 
         </main>
