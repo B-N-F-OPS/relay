@@ -3,7 +3,8 @@ import googleDriveIcon from '@/public/google_drive.png'
 import documentsIcon from '@/public/documents.png'
 import dropboxIcon from '@/public/dropbox.png'
 import onedriveIcon from '@/public/onedrive.png'
-import { oauth2Client } from '@/lib/oauth2'
+import { useEffect } from "react";
+import listFiles from  '@/app/api/google_drive/route'
  
 
 export default function Cards() {
@@ -67,7 +68,13 @@ export default function Cards() {
         const target = e.currentTarget.id
 
         if(target === 'google_Drive') {
-            
+            useEffect( ()=> {
+                async function listDriveFiles() {
+                    await listFiles();
+                }
+
+                listDriveFiles();
+            }, [] )
         }
     }
 
