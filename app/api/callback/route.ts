@@ -1,35 +1,36 @@
-import { NextResponse } from 'next/server'
+import { NextResponse } from 'next/server';
+import { oauth2Client } from '@/lib/oauthClient';
+import { cookies } from 'next/headers'
 
-// The client you created from the Server-Side Auth instructions
-import { createClient } from '@/lib/server'
+export async function GET(req: Request) {
+    const { searchParams } = new URL(req.url);
+    const code = searchParams.get('code');
+    const error = searchParams.get('error');
 
-export async function GET(request: Request) {
-  const { searchParams, origin } = new URL(request.url)
-  const code = searchParams.get('code')
-  // if "next" is in param, use it as the redirect URL
-  let next = searchParams.get('next') ?? '/'
-  if (!next.startsWith('/')) {
-    // if "next" is not a relative URL, use the default
-    next = '/'
-  }
-
-  if (code) {
-    const supabase = await createClient()
-    const { error } = await supabase.auth.exchangeCodeForSession(code)
-    if (!error) {
-      const forwardedHost = request.headers.get('x-forwarded-host') // original origin before load balancer
-      const isLocalEnv = process.env.NODE_ENV === 'development'
-      if (isLocalEnv) {
-        // we can be sure that there is no load balancer in between, so no need to watch for X-Forwarded-Host
-        return NextResponse.redirect(`${origin}${next}`)
-      } else if (forwardedHost) {
-        return NextResponse.redirect(`https://${forwardedHost}${next}`)
-      } else {
-        return NextResponse.redirect(`${origin}${next}`)
+    if (error) {
+        return NextResponse.json({ error: 'Google OAuth Error: ' + error });
       }
+    
+    if (!code) {
+        return NextResponse.json({ error: 'Authorization code not found' });
     }
-  }
 
-  // return the user to an error page with instructions
-  return NextResponse.redirect(`${origin}/auth/auth-code-error`)
+    try {
+        const res = NextResponse.redirect(new URL("/Dashboard", req.url));
+        const { tokens } = await oauth2Client.getToken(code);
+        // const cookieStore = await cookies();
+        res.cookies.set({
+            name: 'google_access_token',
+            value: tokens.access_token || '',  // the access token
+            httpOnly: true,  // for security, the cookie is accessible only by the server
+            secure: process.env.NODE_ENV === 'production',  // send cookie over HTTPS only in production
+            path: '/',  // cookie is available on every route
+            maxAge: 60 * 60 * 24 * 7,  // 1 week
+        });
+
+        return res
+    } catch (error) {
+
+        return NextResponse.json({ error: 'Google OAuth Error failed to exchange code: ' + error });
+    }
 }

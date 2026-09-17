@@ -4,7 +4,8 @@ import documentsIcon from '@/public/documents.png'
 import dropboxIcon from '@/public/dropbox.png'
 import onedriveIcon from '@/public/onedrive.png'
 import { useEffect } from "react";
-import listFiles from  '@/app/api/google_drive/route'
+import googleDriveFiles from  '@/app/api/google_drive/route'
+import FilesList from './filesList'
  
 
 export default function Cards() {
@@ -64,17 +65,14 @@ export default function Cards() {
         }
     ]
 
-    function handleClick (e) {
+    async function handleClick (e) {
         const target = e.currentTarget.id
 
         if(target === 'google_Drive') {
-            useEffect( ()=> {
-                async function listDriveFiles() {
-                    await listFiles();
-                }
 
-                listDriveFiles();
-            }, [] )
+           const files = await googleDriveFiles();
+           console.log(files);
+           < FilesList driveFiles={files}/>
         }
     }
 
