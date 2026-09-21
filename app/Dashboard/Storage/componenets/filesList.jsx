@@ -3,7 +3,6 @@
 import Image from "next/image"
 import dropDown from "@/public/down-arrow.png"
 import { Suspense, use, useEffect, useState } from "react"
-// import GoogleDriveFiles from  '@/app/api/google_drive/route';
 
 export default function FilesList( {driveFiles} ) {
 
