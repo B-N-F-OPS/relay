@@ -3,12 +3,34 @@
 import Image from "next/image"
 import dropDown from "@/public/down-arrow.png"
 import { Suspense, use, useEffect, useState } from "react"
+import googleDriveFiles from  '@/app/api/google_drive/route'
 
-export default function FilesList( {driveFiles} ) {
+export default function FilesList() {
+
+    const [gDriveUIFiles, SetGdriveUIfiles] = useState([])
+
+    useEffect(()=> {
+        async function displayGdriveFiles() {
+            const files = await googleDriveFiles();
+
+            const mappedGDriveFiles = files?.map(items => {
+                return (
+                    <section key={items.id}>
+                        <p className="opacity-70 p-3 m-1 bg-[#212332]">{items.name}</p>
+                    </section>
+                )
+            })
+
+            SetGdriveUIfiles(mappedGDriveFiles)
+        }
+
+        displayGdriveFiles();
+    }, [])
+
 
 
     return(
-        <main className="bg-[#2A2D3E] overflow-y-auto pl-8 pr-4 rounded-xl">
+        <main className="bg-[#2A2D3E] pl-8 pr-4 rounded-xl">
 
             <div className="flex flex-row gap-54 items-center">
                 <p className="mt-7 mb-5 text-xl">Recent files</p>
@@ -36,9 +58,9 @@ export default function FilesList( {driveFiles} ) {
                 </div>
             </nav>
 
-            <div>
+            <div className="overflow-y-auto scrollbar-none h-75">
                 <Suspense fallback='Loading Drive Files...'>
-                    {driveFiles}
+                    {gDriveUIFiles}
                 </Suspense>
             </div>
 

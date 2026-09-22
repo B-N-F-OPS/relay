@@ -38,11 +38,9 @@ export default function StoragePage() {
                 <Cards />
             </div>
 
-            <div className="flex flex-row gap-11 pl-6 w-[69%] h-full pb-6">
-                <Suspense fallback={<p>Loading files...</p>}>
-                    <FilesList />
-                    {/* <Analytics /> */}
-                </Suspense>
+            <div className="flex flex-row gap-11 pl-6 w-[69%] pb-6 overflow-auto">
+                <FilesList />
+                {/* <Analytics /> */}
             </div>
 
         </>
