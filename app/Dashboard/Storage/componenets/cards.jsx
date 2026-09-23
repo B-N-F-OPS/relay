@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 import googleDriveIcon from '@/public/google_drive.png'
 import documentsIcon from '@/public/documents.png'

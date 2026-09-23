@@ -4,7 +4,7 @@ import profile from '@/public/profile.png'
 import Cards from './componenets/cards'
 import FilesList from "./componenets/filesList"
 import Analytics from "./componenets/analytics"
-import { Suspense } from 'react'
+// import { Suspense } from 'react'
 
 export default function StoragePage() {
     return(
