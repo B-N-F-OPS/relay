@@ -3,7 +3,6 @@ import googleDriveIcon from '@/public/google_drive.png'
 import documentsIcon from '@/public/documents.png'
 import dropboxIcon from '@/public/dropbox.png'
 import onedriveIcon from '@/public/onedrive.png'
-import { useEffect } from "react";
 import googleDriveFiles from  '@/app/api/google_drive/route'
 import FilesList from './filesList'
  
