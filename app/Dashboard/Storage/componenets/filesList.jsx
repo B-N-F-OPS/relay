@@ -16,7 +16,7 @@ export default function FilesList() {
             const mappedGDriveFiles = files?.map(items => {
                 return (
                     <section key={items.id}>
-                        <p className="opacity-70 p-3 m-1 bg-[#212332]">{items.name}</p>
+                        <p className="opacity-70 p-3 m-1 bg-[#212332]">{items.name.toLowerCase()}</p>
                     </section>
                 )
             })
