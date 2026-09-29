@@ -18,12 +18,13 @@ export default async function googleDriveFiles() {
       pageSize: 20,
       fields: "nextPageToken, files(id, name)",
     });
-    files = result.data.files;
+    files = result.data.files
+    // .data.files;
 
   } catch (error) {
     console.log(error)
   } 
-
+  console.log(files)
   return files
 }
 
