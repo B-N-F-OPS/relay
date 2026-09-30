@@ -24,6 +24,19 @@ export default async function gmailFiles() {
   }
   console.log('Messages=>', labelList);
  
-  return labelList;
+  // return labelList;
+
+  // get messages
+
+  const messagesList = labelList?.map(async (items)=> {
+    const messages = await gmail.users.messages.get({
+      userId: 'me',
+      id: items.id
+    })
+    return messages
+  })
+
+  console.log('Message_List:=>', messagesList.data);
+  return messagesList.data
 
 }
